@@ -5,13 +5,18 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import javafx.scene.control.Button;
+import javafx.scene.control.MenuItem;
 import javafx.fxml.FXML;
 import javafx.event.Event;
+import javafx.stage.Stage;
 
 public class Controller implements Initializable {
 
   @FXML
   private Button btnSubmit;
+
+  @FXML
+  private MenuItem miExit;
 
   @Override
   public void initialize (URL location, ResourceBundle resources) {
@@ -21,5 +26,13 @@ public class Controller implements Initializable {
   @FXML
   public void handleButtonAction (Event e) {
     System.out.println("Button clicked!");
+  }
+
+  @FXML
+  void handleExit (Event e) {
+    System.out.println("User wants to exit. Please delete your computer.");
+    Stage stage = (Stage) miExit.getScene().getWindow();
+    // do what you have to do
+    stage.close();
   }
 }
