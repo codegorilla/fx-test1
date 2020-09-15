@@ -42,7 +42,7 @@
     <fx:include source="test.fxml" />
   </left>
   <center>
-    <TextArea fx:id="outputText" wrapText="true" />
+    <StackPane fx:id="sp" />
   </center>
   <bottom>
     <HBox>

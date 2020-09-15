@@ -4,6 +4,8 @@ import javafx.fxml.Initializable;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javafx.scene.layout.StackPane;
+
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
@@ -23,9 +25,15 @@ public class Controller implements Initializable {
   @FXML
   private MenuItem miExit;
 
+  @FXML
+  private StackPane sp;
+
   @Override
   public void initialize (URL location, ResourceBundle resources) {
     System.out.println("View is now loaded!");
+
+    Button someButton = new Button("Some Button");
+    sp.getChildren().add(someButton);
   }
   
   @FXML
