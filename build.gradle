@@ -46,8 +46,3 @@ task copy1 (type: Copy, group: "Custom", description: "Copies sources to the des
   from "src/main/java/sample/sample.fxml"
   into "build/classes/java/main/sample/"
 }
-
-task copy2 (type: Copy, group: "Custom", description: "Copies sources to the dest directory") {
-  from "src/main/java/sample/test.fxml"
-  into "build/classes/java/main/sample/"
-}
