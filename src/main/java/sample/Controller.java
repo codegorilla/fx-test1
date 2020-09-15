@@ -4,7 +4,9 @@ import javafx.fxml.Initializable;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javafx.scene.control.SplitPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuBar;
@@ -31,26 +33,23 @@ public class Controller implements Initializable {
   private MenuItem miExit;
 
   @FXML
-  private StackPane sp;
+  private SplitPane sp;
 
+  @FXML
+  private VBox vb;
+
+  @FXML
+  private Button btnTest1;
+
+  @FXML
   private MapView mapView;
 
   @Override
   public void initialize (URL location, ResourceBundle resources) {
     System.out.println("View is now loaded!");
-
-    //Button someButton = new Button("Some Button");
-    //sp.getChildren().add(someButton);
-
-    // create a MapView to display the map and add it to the stack pane
-    mapView = new MapView();
-    sp.getChildren().add(mapView);
+    sp.setResizableWithParent(vb, Boolean.FALSE);
+    //sp.setDividerPositions(0.25);
     setupMap();
-    // create an ArcGISMap with the default imagery basemap
-    //ArcGISMap map = new ArcGISMap(Basemap.createImagery());
-
-    // display the map by setting the map on the map view
-    //mapView.setMap(map);
   }
 
   private void setupMap() {

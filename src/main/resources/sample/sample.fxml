@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import com.esri.arcgisruntime.mapping.view.MapView?>
+
 
 <BorderPane
     xmlns:fx="http://javafx.com/fxml"
@@ -42,7 +44,15 @@
     <fx:include source="test.fxml" />
   </left>
   <center>
-    <StackPane fx:id="sp" />
+    <SplitPane fx:id="sp" />
+      <items>
+        <VBox fx:id="vb">
+          <children>
+            <Button fx:id="btnTest1" text="Left" />
+          </children>
+        </VBox>
+        <MapView fx:id="mapView" />
+      </items>
   </center>
   <bottom>
     <HBox>
