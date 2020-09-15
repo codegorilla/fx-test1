@@ -2,7 +2,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import com.esri.arcgisruntime.mapping.view.MapView?>
-
+<?import org.kordamp.ikonli.javafx.FontIcon?>
 
 <BorderPane
     xmlns:fx="http://javafx.com/fxml"
@@ -10,35 +10,62 @@
     prefWidth="600.0"
     fx:controller="sample.Controller">
   <top>
-    <MenuBar fx:id="menuBar">
-      <menus>
-        <Menu text="File">
+    <VBox>
+      <children>
+        <MenuBar fx:id="menuBar">
+          <menus>
+            <Menu text="File">
+              <items>
+                <MenuItem text="New" />
+                <MenuItem text="Open" />
+                <SeparatorMenuItem />
+                <MenuItem fx:id="miExit" text="Exit" onAction="#handleExit" />
+              </items>
+            </Menu>
+            <Menu text="Edit">
+              <items>
+                <MenuItem text="Copy" />
+                <MenuItem text="Cut" />
+                <MenuItem text="Paste" />
+              </items>
+            </Menu>
+            <Menu text="View">
+              <items>
+                <MenuItem text="Fullscreen" />
+              </items>
+            </Menu>
+            <Menu text="Help">
+              <items>
+                <MenuItem text="About" />
+              </items>
+            </Menu>
+          </menus>
+        </MenuBar>
+        <ToolBar>
           <items>
-            <MenuItem text="New" />
-            <MenuItem text="Open" />
-            <SeparatorMenuItem />
-            <MenuItem fx:id="miExit" text="Exit" onAction="#handleExit" />
+            <Button>
+              <graphic>
+                <FontIcon iconLiteral="fa-file-o" iconSize="24" />
+              </graphic>
+            </Button>
+            <Button
+                fx:id="btnZoomIn" 
+                onAction="#handleZoomIn">
+              <graphic>
+                <FontIcon iconLiteral="fa-search-plus" iconSize="24" />
+              </graphic>
+            </Button>
+            <Button
+                fx:id="btnZoomOut"
+                onAction="#handleZoomOut">
+              <graphic>
+                <FontIcon iconLiteral="fa-search-minus" iconSize="24" />
+              </graphic>
+            </Button>
           </items>
-        </Menu>
-        <Menu text="Edit">
-          <items>
-            <MenuItem text="Copy" />
-            <MenuItem text="Cut" />
-            <MenuItem text="Paste" />
-          </items>
-        </Menu>
-        <Menu text="View">
-          <items>
-            <MenuItem text="Fullscreen" />
-          </items>
-        </Menu>
-        <Menu text="Help">
-          <items>
-            <MenuItem text="About" />
-          </items>
-        </Menu>
-      </menus>
-    </MenuBar>
+        </ToolBar>
+      </children>
+    </VBox>
   </top>
   <left>
     <fx:include source="test.fxml" />

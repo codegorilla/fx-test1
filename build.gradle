@@ -35,6 +35,9 @@ configurations {
 }
 
 dependencies {
+  compile "org.kordamp.ikonli:ikonli-javafx:11.5.0"
+  compile "org.kordamp.ikonli:ikonli-fontawesome-pack:11.5.0"
+  compile "org.kordamp.ikonli:ikonli-fontawesome5-pack:11.5.0"
   implementation "com.esri.arcgisruntime:arcgis-java:$arcgisVersion"
   natives "com.esri.arcgisruntime:arcgis-java-jnilibs:$arcgisVersion"
   natives "com.esri.arcgisruntime:arcgis-java-resources:$arcgisVersion"

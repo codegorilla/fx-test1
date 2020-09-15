@@ -18,8 +18,11 @@ import javafx.stage.Stage;
 
 import com.esri.arcgisruntime.mapping.ArcGISMap;
 import com.esri.arcgisruntime.mapping.Basemap;
-import com.esri.arcgisruntime.mapping.view.MapView;
+import com.esri.arcgisruntime.mapping.Viewpoint;
 
+import com.esri.arcgisruntime.geometry.Point;
+
+import com.esri.arcgisruntime.mapping.view.MapView;
 
 public class Controller implements Initializable {
 
@@ -44,6 +47,12 @@ public class Controller implements Initializable {
   @FXML
   private MapView mapView;
 
+  @FXML
+  private Button btnZoomIn;
+
+  @FXML
+  private Button btnZoomOut;
+
   @Override
   public void initialize (URL location, ResourceBundle resources) {
     System.out.println("View is now loaded!");
@@ -67,6 +76,20 @@ public class Controller implements Initializable {
   @FXML
   public void handleButtonAction (Event e) {
     System.out.println("Button clicked!");
+  }
+
+  @FXML
+  public void handleZoomIn (Event e) {
+    Viewpoint current = mapView.getCurrentViewpoint(Viewpoint.Type.CENTER_AND_SCALE);
+    Viewpoint zoomedIn = new Viewpoint((Point) current.getTargetGeometry(), current.getTargetScale() / 2.0);
+    mapView.setViewpointAsync(zoomedIn);
+  }
+
+  @FXML
+  public void handleZoomOut (Event e) {
+    Viewpoint current = mapView.getCurrentViewpoint(Viewpoint.Type.CENTER_AND_SCALE);
+    Viewpoint zoomedOut = new Viewpoint((Point) current.getTargetGeometry(), current.getTargetScale() * 2.0);
+    mapView.setViewpointAsync(zoomedOut);
   }
 
   @FXML
