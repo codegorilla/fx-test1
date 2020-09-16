@@ -67,7 +67,7 @@ task copyNatives(type: Copy) {
 run {
   dependsOn copyNatives
   // Define the main class for the application.
-  mainClassName = 'sample.Main'
+  mainClassName = 'sample.GlobeCommander'
 }
 
 /*
