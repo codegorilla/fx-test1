@@ -5,24 +5,20 @@ import java.util.ResourceBundle;
 
 import javafx.event.Event;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.stage.Stage;
 
-
-public class MenubarController implements Initializable {
+public class MenubarController {
 
   @FXML private MenuBar menuBar;
   @FXML private MenuItem miExit;
 
-  @Override
-  public void initialize (URL location, ResourceBundle resources) {
+  @FXML private void initialize () {
     System.out.println("Menubar is now loaded!");
   }
 
-  @FXML
-  void handleExit (Event e) {
+  @FXML void handleExit (Event e) {
     System.out.println("User wants to exit. Please delete your computer.");
     dispose();
     Stage stage = (Stage) menuBar.getScene().getWindow();

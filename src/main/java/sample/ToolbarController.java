@@ -5,18 +5,16 @@ import java.util.ResourceBundle;
 
 import javafx.event.Event;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ToolBar;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class ToolbarController implements Initializable {
+public class ToolbarController {
 
   @FXML private VBox vbox;
 
-  @Override
-  public void initialize (URL location, ResourceBundle resources) {
+  @FXML private void initialize () {
     System.out.println("Toolbar is now loaded!");
   }
 
