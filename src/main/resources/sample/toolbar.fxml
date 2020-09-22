@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<StackPane
+    xmlns:fx="http://javafx.com/fxml"
+    fx:controller="sample.ToolbarController">
+  <VBox fx:id="vbox">
+    <ToolBar>
+      <items>
+        <Button>
+          <graphic>
+            <FontIcon iconLiteral="fa-file-o" iconSize="24" />
+          </graphic>
+        </Button>
+        <Button
+            fx:id="btnZoomIn" 
+            onAction="#handleZoomIn">
+          <graphic>
+            <FontIcon iconLiteral="fa-search-plus" iconSize="24" />
+          </graphic>
+        </Button>
+        <Button
+            fx:id="btnZoomOut"
+            onAction="#handleZoomOut">
+          <graphic>
+            <FontIcon iconLiteral="fa-search-minus" iconSize="24" />
+          </graphic>
+        </Button>
+      </items>
+    </ToolBar>
+  </VBox>
+</StackPane>

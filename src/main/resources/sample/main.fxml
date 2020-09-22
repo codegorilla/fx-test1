@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import sample.TMap?>
+
+<BorderPane
+    xmlns:fx="http://javafx.com/fxml"
+    prefHeight="400.0"
+    prefWidth="600.0"
+    fx:controller="sample.MainController">
+  <top>
+    <VBox fx:id="topv">
+      <fx:include source="menubar.fxml" />
+      <fx:include source="toolbar.fxml" />
+    </VBox>
+  </top>
+  <center>
+    <SplitPane fx:id="sp" />
+      <items>
+        <VBox fx:id="vb">
+          <fx:include source="layerpanel.fxml" />
+        </VBox>
+        <SplitPane fx:id="sp1" orientation="VERTICAL">
+          <SplitPane fx:id="sp2">
+            <TMap fx:id="tmap" />
+            <fx:include fx:id="testview" source="property_pane.fxml" />
+          </SplitPane>
+          <TextArea
+              fx:id="output" />
+        </SplitPane>
+      </items>
+  </center>
+  <bottom>
+    <HBox>
+      <Label text="I love pie"/>
+      <Button fx:id="btnSubmit" text="Submit" onAction="#handleButtonAction" />
+    </HBox>
+  </bottom>
+</BorderPane>

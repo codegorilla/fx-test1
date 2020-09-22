@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<StackPane
+    xmlns:fx="http://javafx.com/fxml"
+    fx:controller="sample.PropertyPaneController">
+  <VBox fx:id="vbox">
+    <HBox>
+      <Label text="Properties" />
+    </HBox>
+    <TableView fx:id="table">
+      <columnResizePolicy>
+        <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+      </columnResizePolicy>
+    </TableView>
+  </VBox>
+</StackPane>

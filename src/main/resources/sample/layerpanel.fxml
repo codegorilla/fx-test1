@@ -4,8 +4,8 @@
 
 <StackPane
     xmlns:fx="http://javafx.com/fxml"
-    fx:controller="sample.TestController">
+    fx:controller="sample.LayerPanelController">
   <children>
-    <Button fx:id="btnHello" text="Hello" onAction="#handleButtonAction" />
+    <TreeView fx:id="treeView" />
   </children>
 </StackPane>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import com.esri.arcgisruntime.mapping.view.MapView?>
+
+<fx:root
+    type="javafx.scene.layout.StackPane"
+    xmlns:fx="http://javafx.com/fxml">
+  <MapView
+      fx:id="mapView"
+      onMouseClicked="#handleClick" />
+</fx:root>
