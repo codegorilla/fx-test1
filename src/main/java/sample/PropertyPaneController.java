@@ -1,13 +1,10 @@
 package sample;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.Event;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
+
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -15,13 +12,12 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class PropertyPaneController implements Initializable {
+public class PropertyPaneController {
 
   @FXML private VBox vbox;
   @FXML private TableView<TrackProperty> table;
 
-  @Override
-  public void initialize (URL location, ResourceBundle resources) {
+  @FXML private void initialize () {
     System.out.println("Property pane is now loaded!");
 
     var p1 = new TrackProperty("ID", 102);
@@ -48,7 +44,6 @@ public class PropertyPaneController implements Initializable {
     //    table.setMaxHeight(1200);
 
     vbox.setVgrow(table, Priority.ALWAYS);
-
   }
 
 }

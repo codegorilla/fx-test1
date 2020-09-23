@@ -1,10 +1,7 @@
 package sample;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-
 import javafx.event.Event;
-
+import javafx.fxml.FXML;
 import javafx.geometry.Point2D;
 
 import javafx.scene.control.Button;
@@ -17,12 +14,9 @@ import javafx.scene.input.MouseEvent;
 
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.stage.Stage;
 
-public class MainController implements Initializable {
+public class MainController {
 
   @FXML
   private Button btnSubmit;
@@ -40,7 +34,7 @@ public class MainController implements Initializable {
   private TextArea output;
 
   @FXML
-  private StackPane testview;
+  private StackPane propertyPane;
 
   @FXML
   private VBox vb;
@@ -48,8 +42,13 @@ public class MainController implements Initializable {
   @FXML
   private Button btnTest1;
 
-  @Override
-  public void initialize (URL location, ResourceBundle resources) {
+  @FXML
+  private MenubarController menubarController;
+
+  @FXML
+  private ToolbarController toolbarController;
+
+  @FXML private void initialize () {
     System.out.println("View is now loaded!");
     sp.setResizableWithParent(vb, false);
     sp.setDividerPositions(0.25);
@@ -66,9 +65,14 @@ public class MainController implements Initializable {
     sp1.setMinHeight(100);
 
 
-    sp2.setResizableWithParent(testview, false);
+    sp2.setResizableWithParent(propertyPane, false);
     sp2.setDividerPositions(0.75);
     sp2.setMinWidth(0);
+
+    menubarController.setToolbarController(toolbarController);
+
+    menubarController.testme();
+    toolbarController.testme();
   }
 
   @FXML

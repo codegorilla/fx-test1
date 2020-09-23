@@ -17,7 +17,7 @@
       </Menu>
       <Menu text="Edit">
         <items>
-          <MenuItem text="Copy" />
+          <MenuItem text="Copy" onAction="#handleCopy" />
           <MenuItem text="Cut" />
           <MenuItem text="Paste" />
         </items>

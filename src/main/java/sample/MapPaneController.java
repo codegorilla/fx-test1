@@ -1,15 +1,11 @@
 package sample;
 
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.Event;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.geometry.Point2D;
+
 import javafx.scene.input.MouseEvent; 
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.StackPane;
@@ -36,7 +32,7 @@ import com.esri.arcgisruntime.symbology.TextSymbol;
 
 import com.esri.arcgisruntime.mapping.view.MapView;
 
-public class TMapController implements Initializable {
+public class MapPaneController {
 
   private int hexRed = 0xFFFF0000;
   private int hexGreen = 0xFF00FF00;
@@ -47,8 +43,7 @@ public class TMapController implements Initializable {
   @FXML private VBox vbox;
   @FXML private MapView mapView;
 
-  @Override
-  public void initialize (URL location, ResourceBundle resources) {
+  @FXML private void initialize () {
     setupMap();
     setupGraphicsOverlay();
     addPointGraphic(-118.29507, 34.13501);

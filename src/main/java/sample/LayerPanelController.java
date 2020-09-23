@@ -1,8 +1,7 @@
 package sample;
 
-import javafx.fxml.Initializable;
-import java.net.URL;
-import java.util.ResourceBundle;
+import javafx.fxml.FXML;
+import javafx.event.Event;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
@@ -15,11 +14,9 @@ import javafx.scene.control.cell.CheckBoxTreeCell;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-import javafx.fxml.FXML;
-import javafx.event.Event;
 import javafx.stage.Stage;
 
-public class LayerPanelController implements Initializable {
+public class LayerPanelController {
 
   @FXML
   private Button btnHello;
@@ -27,8 +24,7 @@ public class LayerPanelController implements Initializable {
   @FXML
   private TreeView treeView;
 
-  @Override
-  public void initialize (URL location, ResourceBundle resources) {
+  @FXML private void initialize () {
     System.out.println("View is now loaded!");
 
     Image image = new Image(getClass().getResourceAsStream("layers16.png"));

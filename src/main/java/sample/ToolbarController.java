@@ -1,10 +1,8 @@
 package sample;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-
 import javafx.event.Event;
 import javafx.fxml.FXML;
+
 import javafx.scene.control.Button;
 import javafx.scene.control.ToolBar;
 import javafx.scene.layout.VBox;
@@ -38,5 +36,9 @@ public class ToolbarController {
   // public void handleButtonAction (Event e) {
   //   System.out.println("Hello Button clicked!");
   // }
+
+  void testme () {
+    System.out.println("Test me! I am a toolbar controller!");
+  }
 
 }

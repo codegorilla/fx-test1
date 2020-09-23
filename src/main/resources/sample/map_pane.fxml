@@ -3,10 +3,10 @@
 <?import javafx.scene.layout.*?>
 <?import com.esri.arcgisruntime.mapping.view.MapView?>
 
-<fx:root
-    type="javafx.scene.layout.StackPane"
-    xmlns:fx="http://javafx.com/fxml">
+<StackPane
+    xmlns:fx="http://javafx.com/fxml"
+    fx:controller="sample.MapPaneController">
   <MapView
       fx:id="mapView"
       onMouseClicked="#handleClick" />
-</fx:root>
+</StackPane>
