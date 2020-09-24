@@ -25,7 +25,7 @@ public class LayerPanelController {
   private TreeView treeView;
 
   @FXML private void initialize () {
-    System.out.println("View is now loaded!");
+    System.out.println("Layer panel loaded.");
 
     Image image = new Image(getClass().getResourceAsStream("layers16.png"));
 

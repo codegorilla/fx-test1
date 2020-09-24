@@ -15,7 +15,7 @@ public class MenubarController {
   ToolbarController tc;
 
   @FXML private void initialize () {
-    System.out.println("Menubar is now loaded!");
+    System.out.println("Menubar loaded.");
   }
 
   @FXML void handleCopy (Event e) {

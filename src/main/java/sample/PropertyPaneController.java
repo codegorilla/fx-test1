@@ -18,7 +18,7 @@ public class PropertyPaneController {
   @FXML private TableView<TrackProperty> table;
 
   @FXML private void initialize () {
-    System.out.println("Property pane is now loaded!");
+    System.out.println("Property pane loaded.");
 
     var p1 = new TrackProperty("ID", 102);
     var p2 = new TrackProperty("Course", 94);

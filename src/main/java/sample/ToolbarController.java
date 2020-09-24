@@ -13,7 +13,7 @@ public class ToolbarController {
   @FXML private VBox vbox;
 
   @FXML private void initialize () {
-    System.out.println("Toolbar is now loaded!");
+    System.out.println("Toolbar loaded.");
   }
 
   @FXML

@@ -49,7 +49,7 @@ public class MainController {
   private ToolbarController toolbarController;
 
   @FXML private void initialize () {
-    System.out.println("View is now loaded!");
+    System.out.println("Main window loaded.");
     sp.setResizableWithParent(vb, false);
     sp.setDividerPositions(0.25);
     vb.setMinWidth(0);

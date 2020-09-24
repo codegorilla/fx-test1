@@ -44,6 +44,7 @@ public class MapPaneController {
   @FXML private MapView mapView;
 
   @FXML private void initialize () {
+    System.out.println("Map pane loaded.");
     setupMap();
     setupGraphicsOverlay();
     addPointGraphic(-118.29507, 34.13501);
