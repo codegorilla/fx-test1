@@ -41,6 +41,7 @@ public class MenubarController {
     this.tc = tc;
   }
 
+
   void testme () {
     System.out.println("Test me! I am a menubar controller!");
   }

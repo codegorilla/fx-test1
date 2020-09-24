@@ -43,8 +43,19 @@ public class MapPaneController {
   @FXML private VBox vbox;
   @FXML private MapView mapView;
 
+  private Camera camera;
+
   @FXML private void initialize () {
     System.out.println("Map pane loaded.");
+    // setupMap();
+    // setupGraphicsOverlay();
+    // addPointGraphic(-118.29507, 34.13501);
+    // addPointGraphic(-120.5, 30.5);
+  }
+
+  public void setCamera (Camera camera) {
+    this.camera = camera;
+    // Probably doesn't belong here. Maybe move to some other init method
     setupMap();
     setupGraphicsOverlay();
     addPointGraphic(-118.29507, 34.13501);
@@ -55,10 +66,9 @@ public class MapPaneController {
     if (mapView != null) {
       //Basemap.Type basemapType = Basemap.Type.STREETS_VECTOR;
       Basemap.Type basemapType = Basemap.Type.DARK_GRAY_CANVAS_VECTOR;
-      double latitude = 34.02700;
-      double longitude = -118.80543;
-      int levelOfDetail = 12;
-      ArcGISMap map = new ArcGISMap(basemapType, latitude, longitude, levelOfDetail);
+      ArcGISMap map = new ArcGISMap(
+//        basemapType, 34, -118, 12);
+        basemapType, camera.getLatitude(), camera.getLongitude(), camera.getZoom());
       mapView.setMap(map);
       mapView.setWrapAroundMode(WrapAroundMode.ENABLE_WHEN_SUPPORTED);
 
@@ -126,6 +136,18 @@ public class MapPaneController {
     if (mapView != null) {
       mapView.dispose();
     }
+  }
+
+  public void zoomIn () {
+    Viewpoint current = mapView.getCurrentViewpoint(Viewpoint.Type.CENTER_AND_SCALE);
+    Viewpoint zoomedIn = new Viewpoint((Point) current.getTargetGeometry(), current.getTargetScale() / 2.0);
+    mapView.setViewpointAsync(zoomedIn);
+  }
+
+  public void zoomOut () {
+   Viewpoint current = mapView.getCurrentViewpoint(Viewpoint.Type.CENTER_AND_SCALE);
+   Viewpoint zoomedOut = new Viewpoint((Point) current.getTargetGeometry(), current.getTargetScale() * 2.0);
+   mapView.setViewpointAsync(zoomedOut);
   }
 
 }

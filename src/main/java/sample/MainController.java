@@ -42,11 +42,14 @@ public class MainController {
   @FXML
   private Button btnTest1;
 
-  @FXML
-  private MenubarController menubarController;
+  @FXML private MenubarController menubarController;
+  @FXML private ToolbarController toolbarController;
+  @FXML private MapPaneController mapPaneController;
 
-  @FXML
-  private ToolbarController toolbarController;
+  private final double START_LON = -118.75;
+  private final double START_LAT = 34.0;
+  private final int START_ZOOM = 12;
+
 
   @FXML private void initialize () {
     System.out.println("Main window loaded.");
@@ -70,14 +73,22 @@ public class MainController {
     sp2.setMinWidth(0);
 
     menubarController.setToolbarController(toolbarController);
-
+    toolbarController.setMapPaneController(mapPaneController);
+    
     menubarController.testme();
     toolbarController.testme();
+
+    var camera = new Camera(START_LON, START_LAT, START_ZOOM);
+    mapPaneController.setCamera(camera);
   }
 
   @FXML
   public void handleButtonAction (Event e) {
     System.out.println("Button clicked!");
+  }
+
+  public MapPaneController getMapPaneController() {
+    return mapPaneController;
   }
 
 }

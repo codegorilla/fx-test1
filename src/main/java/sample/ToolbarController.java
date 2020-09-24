@@ -12,33 +12,30 @@ public class ToolbarController {
 
   @FXML private VBox vbox;
 
+  MapPaneController mpc;
+
   @FXML private void initialize () {
     System.out.println("Toolbar loaded.");
   }
 
+  // Should these be events or actionevents?
+
   @FXML
   public void handleZoomIn (Event e) {
-    System.out.println("Hello!");
-//    Viewpoint current = mapView.getCurrentViewpoint(Viewpoint.Type.CENTER_AND_SCALE);
-//    Viewpoint zoomedIn = new Viewpoint((Point) current.getTargetGeometry(), current.getTargetScale() / 2.0);
-//    mapView.setViewpointAsync(zoomedIn);
+    mpc.zoomIn();
   }
 
   @FXML
   public void handleZoomOut (Event e) {
-//    Viewpoint current = mapView.getCurrentViewpoint(Viewpoint.Type.CENTER_AND_SCALE);
-//    Viewpoint zoomedOut = new Viewpoint((Point) current.getTargetGeometry(), current.getTargetScale() * 2.0);
-//    mapView.setViewpointAsync(zoomedOut);
+    mpc.zoomOut();
   }
-
-
-  // @FXML
-  // public void handleButtonAction (Event e) {
-  //   System.out.println("Hello Button clicked!");
-  // }
 
   void testme () {
     System.out.println("Test me! I am a toolbar controller!");
+  }
+
+  void setMapPaneController (MapPaneController mpc) {
+    this.mpc = mpc;
   }
 
 }
