@@ -3,32 +3,44 @@
 <?import javafx.scene.layout.*?>
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
-<StackPane
+<VBox
     xmlns:fx="http://javafx.com/fxml"
     fx:controller="sample.ToolbarController">
-  <VBox fx:id="vbox">
-    <ToolBar>
-      <items>
-        <Button>
-          <graphic>
-            <FontIcon iconLiteral="fa-file-o" iconSize="24" />
-          </graphic>
-        </Button>
-        <Button
-            fx:id="btnZoomIn" 
-            onAction="#handleZoomIn">
-          <graphic>
-            <FontIcon iconLiteral="fa-search-plus" iconSize="24" />
-          </graphic>
-        </Button>
-        <Button
-            fx:id="btnZoomOut"
-            onAction="#handleZoomOut">
-          <graphic>
-            <FontIcon iconLiteral="fa-search-minus" iconSize="24" />
-          </graphic>
-        </Button>
-      </items>
-    </ToolBar>
-  </VBox>
-</StackPane>
+  <ToolBar>
+    <Button>
+      <graphic>
+        <FontIcon iconLiteral="fa-file-o" iconSize="24" />
+      </graphic>
+    </Button>
+    <Button
+        fx:id="btnZoomIn" 
+        onAction="#handleZoomIn">
+      <graphic>
+        <FontIcon iconLiteral="fa-search-plus" iconSize="24" />
+      </graphic>
+    </Button>
+    <Button
+        fx:id="btnZoomOut"
+        onAction="#handleZoomOut">
+      <graphic>
+        <FontIcon iconLiteral="fa-search-minus" iconSize="24" />
+      </graphic>
+    </Button>
+    <Separator />
+    <Button
+        fx:id="btnToggleGrid"
+        onAction="#handleToggleGrid">
+      <graphic>
+        <FontIcon iconLiteral="fa-table" iconSize="24" />
+      </graphic>
+    </Button>
+    <Separator />
+    <Button
+        fx:id="btnDrawPoint"
+        onAction="#handleDrawPoint">
+      <graphic>
+        <FontIcon iconLiteral="fa-map-marker" iconSize="24" />
+      </graphic>
+    </Button>
+  </ToolBar>
+</VBox>

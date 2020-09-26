@@ -1,6 +1,6 @@
 package sample;
 
-import javafx.event.Event;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
 import javafx.scene.control.MenuBar;
@@ -12,18 +12,29 @@ public class MenubarController {
   @FXML private MenuBar menuBar;
   @FXML private MenuItem miExit;
 
+  MapPaneController mpc;
   ToolbarController tc;
 
   @FXML private void initialize () {
     System.out.println("Menubar loaded.");
   }
 
-  @FXML void handleCopy (Event e) {
+  @FXML
+  public void handleZoomIn (ActionEvent e) {
+    mpc.zoomIn();
+  }
+
+  @FXML
+  public void handleZoomOut (ActionEvent e) {
+    mpc.zoomOut();
+  }
+
+  @FXML void handleCopy (ActionEvent e) {
     System.out.println("You have selected File -> Copy!");
     tc.testme();
   }
 
-  @FXML void handleExit (Event e) {
+  @FXML void handleExit (ActionEvent e) {
     System.out.println("User wants to exit. Please delete your computer.");
     dispose();
     Stage stage = (Stage) menuBar.getScene().getWindow();
@@ -46,4 +57,7 @@ public class MenubarController {
     System.out.println("Test me! I am a menubar controller!");
   }
 
+  void setMapPaneController (MapPaneController mpc) {
+    this.mpc = mpc;
+  }
 }

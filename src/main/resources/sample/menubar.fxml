@@ -6,32 +6,24 @@
     xmlns:fx="http://javafx.com/fxml"
     fx:controller="sample.MenubarController">
   <MenuBar fx:id="menuBar">
-    <menus>
-      <Menu text="File">
-        <items>
-          <MenuItem text="New" />
-          <MenuItem text="Open" />
-          <SeparatorMenuItem />
-          <MenuItem fx:id="miExit" text="Exit" onAction="#handleExit" />
-        </items>
-      </Menu>
-      <Menu text="Edit">
-        <items>
-          <MenuItem text="Copy" onAction="#handleCopy" />
-          <MenuItem text="Cut" />
-          <MenuItem text="Paste" />
-        </items>
-      </Menu>
-      <Menu text="View">
-        <items>
-          <MenuItem text="Fullscreen" />
-        </items>
-      </Menu>
-      <Menu text="Help">
-        <items>
-          <MenuItem text="About" />
-        </items>
-      </Menu>
-    </menus>
+    <Menu text="File">
+      <MenuItem text="New" />
+      <MenuItem text="Open" />
+      <SeparatorMenuItem />
+      <MenuItem fx:id="miExit" text="Exit" onAction="#handleExit" />
+    </Menu>
+    <Menu text="Edit">
+      <MenuItem text="Copy" onAction="#handleCopy" />
+      <MenuItem text="Cut" />
+      <MenuItem text="Paste" />
+    </Menu>
+    <Menu text="View">
+      <MenuItem text="Fullscreen" />
+      <MenuItem text="Zoom In" onAction="#handleZoomIn" />
+      <MenuItem text="Zoom Out" onAction="#handleZoomOut" />
+    </Menu>
+    <Menu text="Help">
+      <MenuItem text="About" />
+    </Menu>
   </MenuBar>
 </StackPane>

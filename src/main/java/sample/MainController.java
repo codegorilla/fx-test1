@@ -46,11 +46,6 @@ public class MainController {
   @FXML private ToolbarController toolbarController;
   @FXML private MapPaneController mapPaneController;
 
-  private final double START_LON = -118.75;
-  private final double START_LAT = 34.0;
-  private final int START_ZOOM = 12;
-
-
   @FXML private void initialize () {
     System.out.println("Main window loaded.");
     sp.setResizableWithParent(vb, false);
@@ -73,18 +68,18 @@ public class MainController {
     sp2.setMinWidth(0);
 
     menubarController.setToolbarController(toolbarController);
+    menubarController.setMapPaneController(mapPaneController);
+
     toolbarController.setMapPaneController(mapPaneController);
     
     menubarController.testme();
     toolbarController.testme();
-
-    var camera = new Camera(START_LON, START_LAT, START_ZOOM);
-    mapPaneController.setCamera(camera);
   }
 
   @FXML
   public void handleButtonAction (Event e) {
     System.out.println("Button clicked!");
+    mapPaneController.createEntity();
   }
 
   public MapPaneController getMapPaneController() {

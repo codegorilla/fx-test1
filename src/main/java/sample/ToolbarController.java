@@ -1,8 +1,7 @@
 package sample;
 
-import javafx.event.Event;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-
 import javafx.scene.control.Button;
 import javafx.scene.control.ToolBar;
 import javafx.scene.layout.VBox;
@@ -10,24 +9,30 @@ import javafx.stage.Stage;
 
 public class ToolbarController {
 
-  @FXML private VBox vbox;
-
   MapPaneController mpc;
 
   @FXML private void initialize () {
     System.out.println("Toolbar loaded.");
   }
 
-  // Should these be events or actionevents?
-
   @FXML
-  public void handleZoomIn (Event e) {
+  public void handleZoomIn (ActionEvent e) {
     mpc.zoomIn();
   }
 
   @FXML
-  public void handleZoomOut (Event e) {
+  public void handleZoomOut (ActionEvent e) {
     mpc.zoomOut();
+  }
+
+  @FXML
+  public void handleToggleGrid (ActionEvent e) {
+    mpc.toggleGrid();
+  }
+
+  @FXML
+  public void handleDrawPoint (ActionEvent e) {
+    mpc.drawPoint();
   }
 
   void testme () {
