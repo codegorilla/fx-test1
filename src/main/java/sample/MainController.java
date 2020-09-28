@@ -74,6 +74,8 @@ public class MainController {
     
     menubarController.testme();
     toolbarController.testme();
+
+    
   }
 
   @FXML

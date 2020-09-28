@@ -4,42 +4,55 @@
 <?import org.kordamp.ikonli.javafx.FontIcon?>
 
 <VBox
-    xmlns:fx="http://javafx.com/fxml"
-    fx:controller="sample.ToolbarController">
-  <ToolBar>
-    <Button>
+  xmlns:fx="http://javafx.com/fxml"
+  fx:controller="sample.ToolbarController">
+  <ToolBar fx:id="toolbar">
+    <Button
+      focusTraversable="false">
       <graphic>
         <FontIcon iconLiteral="fa-file-o" iconSize="24" />
       </graphic>
     </Button>
     <Button
-        fx:id="btnZoomIn" 
-        onAction="#handleZoomIn">
+      fx:id="btnZoomIn"
+      focusTraversable="false"
+      onAction="#handleZoomIn">
       <graphic>
         <FontIcon iconLiteral="fa-search-plus" iconSize="24" />
       </graphic>
     </Button>
     <Button
-        fx:id="btnZoomOut"
-        onAction="#handleZoomOut">
+      fx:id="btnZoomOut"
+      focusTraversable="false"
+      onAction="#handleZoomOut">
       <graphic>
         <FontIcon iconLiteral="fa-search-minus" iconSize="24" />
       </graphic>
     </Button>
     <Separator />
     <Button
-        fx:id="btnToggleGrid"
-        onAction="#handleToggleGrid">
+      fx:id="btnToggleGrid"
+      focusTraversable="false"
+      onAction="#handleToggleGrid">
       <graphic>
         <FontIcon iconLiteral="fa-table" iconSize="24" />
       </graphic>
     </Button>
     <Separator />
     <Button
-        fx:id="btnDrawPoint"
-        onAction="#handleDrawPoint">
+      fx:id="btnStartDraw"
+      focusTraversable="false"
+      onAction="#handleStartDraw">
       <graphic>
         <FontIcon iconLiteral="fa-map-marker" iconSize="24" />
+      </graphic>
+    </Button>
+    <Button
+      fx:id="btnStopDraw"
+      focusTraversable="false"
+      onAction="#handleStopDraw">
+      <graphic>
+        <FontIcon iconLiteral="fa-stop-circle-o" iconSize="24" />
       </graphic>
     </Button>
   </ToolBar>

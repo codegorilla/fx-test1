@@ -13,6 +13,8 @@ public class AppContext {
   private MenubarController menubarController;
   private ToolbarController toolbarController;
 
+  private MapPaneController mapPaneController;
+
   private AppContext () {
     camera = new Camera(START_LON, START_LAT, START_ZOOM);
   }
@@ -27,14 +29,25 @@ public class AppContext {
     return camera;
   }
 
+  public MapPaneController getMapPaneController () {
+    return mapPaneController;
+  }
+
+  public ToolbarController getToolbarController () {
+    return toolbarController;
+  }
+
   private void setMenubarController (MenubarController m) {
     menubarController = m;
   }
 
-  private void setToolbarController (ToolbarController t) {
+  public void setToolbarController (ToolbarController t) {
     toolbarController = t;
   }
 
+  public void setMapPaneController (MapPaneController mpc) {
+    mapPaneController = mpc;
+  }
 
 
 }

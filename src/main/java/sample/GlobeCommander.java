@@ -32,6 +32,10 @@ public class GlobeCommander extends Application {
     primaryStage.setTitle("Globe Commander");
     primaryStage.setScene(new Scene(root, START_WIDTH, START_HEIGHT));
     primaryStage.show();
+
+    // Set focus on map pane controller
+    //AppContext.getInstance().getMapPaneController().setFocus();
+    //AppContext.getInstance().getToolbarController().disableFocusTraversable();
   }
 
 }

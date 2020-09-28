@@ -6,7 +6,8 @@ import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.geometry.Point2D;
 
-import javafx.scene.input.MouseEvent; 
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -23,9 +24,11 @@ import com.esri.arcgisruntime.mapping.SelectionProperties;
 import com.esri.arcgisruntime.mapping.Viewpoint;
 import com.esri.arcgisruntime.mapping.view.Graphic;
 import com.esri.arcgisruntime.mapping.view.GraphicsOverlay;
+import com.esri.arcgisruntime.mapping.view.InteractionListener;
 import com.esri.arcgisruntime.mapping.view.LatitudeLongitudeGrid;
 import com.esri.arcgisruntime.mapping.view.WrapAroundMode;
 import com.esri.arcgisruntime.mapping.view.SketchCreationMode;
+import com.esri.arcgisruntime.mapping.view.SketchEditConfiguration;
 import com.esri.arcgisruntime.mapping.view.SketchEditor;
 import com.esri.arcgisruntime.mapping.view.SketchStyle;
 
@@ -36,6 +39,7 @@ import com.esri.arcgisruntime.symbology.SimpleMarkerSymbol;
 import com.esri.arcgisruntime.symbology.TextSymbol;
 
 import com.esri.arcgisruntime.mapping.view.MapView;
+import javafx.scene.control.TextArea;
 
 public class MapPaneController {
 
@@ -56,12 +60,23 @@ public class MapPaneController {
   private SketchEditor sketchEditor;
   private SketchStyle sketchStyle;
 
-  @FXML private VBox vbox;
+  private InteractionListener savedIntListener;
+  private InteractionListener intListener;
+  private DrawInteractionListener drawIntListener = null;
+
   @FXML private MapView mapView;
 
   @FXML private void initialize () {
     setupMap();
     setupGrid();
+
+    // Create interaction listeners
+    intListener = new MyInteractionListener(mapView);
+    mapView.setInteractionListener(intListener);
+
+    drawIntListener = new DrawInteractionListener(this, mapView);
+
+
     setupGraphicsOverlay();
     setupSketchEditor();
 
@@ -69,6 +84,37 @@ public class MapPaneController {
     addPointGraphic(-120.5, 30.5);
     mode = MOVE;
     System.out.println("Map pane loaded.");
+
+
+    // Set the map pane controller into the app context
+    // We need to access map pane controller later because for some reason
+    // in order for it to have focus we need to set it after the scene is
+    // loaded.
+    AppContext.getInstance().setMapPaneController(this);
+
+    // var x = mapView.getInteractionListener();
+    // x.onKeyPressed(event -> {
+    //   System.out.println("HI!");
+    // });
+
+    // mapView.setOnKeyPressed(event -> {
+    //   System.out.println("HI!");
+    // });
+
+    // mapView.setOnKeyReleased(event -> {
+    //   System.out.println("HI!");
+    // });
+
+    // mapView.setOnKeyTyped(event -> {
+    //   System.out.println("HI!");
+    // });
+
+  }
+
+  public void setFocus () {
+    mapView.requestFocus();
+    // Should not be traversable
+    //mapView.setFocusTraversable(false);
   }
 
   private void setupMap () {
@@ -122,7 +168,8 @@ public class MapPaneController {
     sketchEditor = new SketchEditor();
     var style = sketchEditor.getSketchStyle();
     var pointSymbol = new SimpleMarkerSymbol(SimpleMarkerSymbol.Style.SQUARE, ColorUtil.colorToArgb(Color.BLUE), 10.0f);
-    pointSymbol.setOutline(new SimpleLineSymbol(SimpleLineSymbol.Style.SOLID, ColorUtil.colorToArgb(Color.RED), 2.0f));
+    pointSymbol.setOutline(
+      new SimpleLineSymbol(SimpleLineSymbol.Style.SOLID, ColorUtil.colorToArgb(Color.RED), 2.0f));
     style.setVertexSymbol(pointSymbol);
     style.setSelectedVertexSymbol(pointSymbol);
     sketchEditor.setSketchStyle(style);
@@ -131,6 +178,14 @@ public class MapPaneController {
     // really part of the sketch editor anymore.
     var properties = mapView.getSelectionProperties();
     properties.setColor(0x8000FFFF);
+    // Configure sketching
+    // setAllowPartSelection doesn't seem to have any effect
+    sketchEditor.getSketchEditConfiguration().setAllowPartSelection(true);
+    // It set to SELECT_ONLY, then nothing appears when drawing
+    sketchEditor.getSketchEditConfiguration().setVertexEditMode(
+      SketchEditConfiguration.SketchVertexEditMode.INTERACTION_EDIT);
+    sketchEditor.getSketchEditConfiguration().setContextMenuEnabled(true);
+    sketchEditor.getSketchEditConfiguration().setRequireSelectionBeforeDrag(true);
   }
 
   private void addPointGraphic(double lon, double lat) {
@@ -143,8 +198,19 @@ public class MapPaneController {
     }
   }
 
+  // @FXML
+  // public void handleClick1 (MouseEvent e) {
+  //   System.out.println("HERE! ***");
+  // }
+
+  // @FXML
+  // public void handleClick2 (MouseEvent e) {
+  //   System.out.println("THERE! ***");
+  // }
+
   @FXML
   public void handleClick (MouseEvent e) {
+    mapView.requestFocus();
     var x = e.getX();
     var y = e.getY();
     System.out.println("Mouse was clicked at pixel (" + x + "," + y + ")");
@@ -166,6 +232,13 @@ public class MapPaneController {
       graphicsOverlay.getGraphics().add(pointGraphic);
     }
   }
+
+  @FXML
+  public void handleKeyPress (KeyEvent e) {
+    System.out.println("Pressed a key now!");
+    e.consume();
+  }
+
 
   void dispose () {
     if (mapView != null) {
@@ -193,8 +266,36 @@ public class MapPaneController {
   public void drawPoint () {
     //mode = DRAW;
     graphicsOverlay.clearSelection();
-    sketchEditor.start(SketchCreationMode.POINT);
+    sketchEditor.stop();
+
+    sketchEditor.start(SketchCreationMode.POLYGON);
+    // Need to get interaction listener and make it listen for ESC key press
+    //InteractionListener someIntListener = mapView.getInteractionListener();
   }
+
+  public void startDraw () {
+    // Switch to a new interaction listener, but preserve the old one
+    saveInteractionListener();
+    //intListener = drawIntListener;
+    mapView.setInteractionListener(drawIntListener);
+  }
+
+  public void saveInteractionListener () {
+    savedIntListener = intListener;
+  }
+
+  public void loadInteractionListener () {
+    mapView.setInteractionListener(intListener);
+  }
+
+  public void stopDraw () {
+    //mode = DRAW;
+    graphicsOverlay.clearSelection();
+    sketchEditor.stop();
+    // Below doesn't work to give map focus after stopping sketchEditor
+    mapView.requestFocus();
+  }
+
 
   public void createEntity () {
     Entity x = new Entity();

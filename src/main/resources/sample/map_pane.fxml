@@ -7,6 +7,7 @@
     xmlns:fx="http://javafx.com/fxml"
     fx:controller="sample.MapPaneController">
   <MapView
-      fx:id="mapView"
-      onMouseClicked="#handleClick" />
+    fx:id="mapView" />
+    <!-- onMouseClicked="#handleClick" /> -->
+    <!-- onKeyPressed="#handleKeyPress" /> -->
 </StackPane>

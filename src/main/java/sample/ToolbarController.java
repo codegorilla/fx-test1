@@ -9,10 +9,18 @@ import javafx.stage.Stage;
 
 public class ToolbarController {
 
+  @FXML ToolBar toolbar;
+
   MapPaneController mpc;
 
   @FXML private void initialize () {
     System.out.println("Toolbar loaded.");
+    //toolbar.setFocusTraversable(false);
+    AppContext.getInstance().setToolbarController(this);
+  }
+
+  public void disableFocusTraversable () {
+    toolbar.setFocusTraversable(false);
   }
 
   @FXML
@@ -34,6 +42,18 @@ public class ToolbarController {
   public void handleDrawPoint (ActionEvent e) {
     mpc.drawPoint();
   }
+
+  @FXML
+  public void handleStartDraw (ActionEvent e) {
+    mpc.startDraw();
+  }
+
+
+  @FXML
+  public void handleStopDraw (ActionEvent e) {
+    mpc.stopDraw();
+  }
+
 
   void testme () {
     System.out.println("Test me! I am a toolbar controller!");
