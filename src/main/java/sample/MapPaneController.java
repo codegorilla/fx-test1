@@ -63,6 +63,7 @@ public class MapPaneController {
   private InteractionListener savedIntListener;
   private InteractionListener intListener;
   private DrawInteractionListener drawIntListener = null;
+  private DrawPolylineInteractionListener drawPolylineIntListener = null;
 
   @FXML private MapView mapView;
 
@@ -75,6 +76,7 @@ public class MapPaneController {
     mapView.setInteractionListener(intListener);
 
     drawIntListener = new DrawInteractionListener(this, mapView);
+    drawPolylineIntListener = new DrawPolylineInteractionListener(this, mapView);
 
 
     setupGraphicsOverlay();
@@ -277,7 +279,8 @@ public class MapPaneController {
     // Switch to a new interaction listener, but preserve the old one
     saveInteractionListener();
     //intListener = drawIntListener;
-    mapView.setInteractionListener(drawIntListener);
+    //mapView.setInteractionListener(drawIntListener);
+    mapView.setInteractionListener(drawPolylineIntListener);
   }
 
   public void saveInteractionListener () {
